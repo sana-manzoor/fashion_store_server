@@ -18,7 +18,7 @@ exports.register = async (req, res) => {
             const newUser = new users({name,address,email,password})
             await newUser.save()
             const token = jwt.sign({ userId: newUser._id }, process.env.secret_key, { expiresIn: '1h' });
-            const verificationUrl = `http://localhost:3000/verify-email?token=${token}`;
+            const verificationUrl = `https://fashion-store-server.onrender.com/verify-email?token=${token}`;
             await transporter.sendMail({
                 from: 'your-email@gmail.com',
                 to: email,
